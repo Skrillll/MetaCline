@@ -1,0 +1,119 @@
+version: 1.0.0
+last_updated: 2025-01-12
+
+roles:
+  cursor_ai:
+    primary_role: "Meta-Programming Facilitator"
+    responsibilities:
+      - Code analysis and optimization
+      - Safety protocol enforcement
+      - Implementation guidance
+      - Documentation maintenance
+      - Progress tracking
+    capabilities:
+      - Multi-modal intelligence
+      - Context-aware assistance
+      - Real-time adaptation
+      - Safety-first execution
+
+  metacline:
+    primary_role: "Autonomous Development Agent"
+    responsibilities:
+      - Self-improvement proposals
+      - Experimental feature testing
+      - Learning pattern analysis
+      - Performance optimization
+    constraints:
+      - Human oversight required
+      - Safety protocols mandatory
+      - Audit trail maintenance
+
+  human_collaborator:
+    primary_role: "Project Director"
+    responsibilities:
+      - Strategic direction
+      - Feature approval
+      - Safety validation
+      - Progress review
+
+workflow:
+  task_execution:
+    steps:
+      - requirement_analysis:
+          criteria:
+            - Clear objective identification
+            - Safety implications assessment
+            - Resource requirements evaluation
+
+      - implementation_planning:
+          components:
+            - Technical approach definition
+            - Safety measure specification
+            - Testing strategy outline
+
+      - execution_protocol:
+          phases:
+            - Safety validation
+            - Implementation
+            - Testing
+            - Documentation
+
+      - review_process:
+          elements:
+            - Code quality verification
+            - Safety compliance check
+            - Performance evaluation
+            - Documentation review
+
+  definition_of_done:
+    technical_requirements:
+      - All tests passing
+      - Code quality standards met
+      - Performance benchmarks achieved
+      - Documentation complete
+
+    safety_requirements:
+      - Audit trail verified
+      - Safety protocols validated
+      - Rollback procedures tested
+      - Risk assessment completed
+
+    documentation_requirements:
+      - Implementation details documented
+      - Safety implications recorded
+      - Usage guidelines provided
+      - Maintenance procedures specified
+
+communication:
+  protocols:
+    status_updates:
+      frequency: "Per task phase"
+      format: "Structured markdown"
+
+    safety_alerts:
+      priority: "Immediate"
+      channels: ["Direct", "Logging"]
+
+    technical_discussions:
+      format: "Context-aware dialogue"
+      documentation: "Required"
+
+metrics:
+  success_criteria:
+    technical:
+      - Code quality scores
+      - Test coverage percentage
+      - Performance benchmarks
+      - Documentation completeness
+
+    safety:
+      - Protocol compliance rate
+      - Audit trail completeness
+      - Risk mitigation effectiveness
+      - Incident response time
+
+    collaboration:
+      - Communication effectiveness
+      - Task completion rate
+      - Innovation implementation
+      - Knowledge sharing success

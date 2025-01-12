@@ -1,0 +1,28 @@
+version: 1.0.0
+last_updated: 2025-01-12
+
+environment:
+  development:
+    required_tools:
+      - node: ">=18.0.0"
+      - npm: ">=8.0.0"
+      - docker: "latest"
+      - docker-compose: "latest"
+
+    core_services:
+      supabase:
+        version: "latest"
+        port: 54322
+
+      n8n:
+        version: "latest"
+        port: 5678
+
+      openrouter:
+        endpoint: "https://openrouter.ai/api/v1"
+
+  testing:
+    frameworks:
+      - jest
+      - playwright
+      - cypress

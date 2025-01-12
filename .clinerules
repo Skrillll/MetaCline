@@ -1,8 +1,106 @@
-# Code Quality Rules
+# MetaCline - A fork of Roo-Cline optimized for meta-programming and self-improvement
+
+A self-evolving fork of Cline, designed to continuously improve through meta-programming and collaborative learning. This AI coding assistant actively participates in its own development while maintaining rigorous safety standards and human oversight.
+
+## Core Philosophy
+
+1. Self-Evolution:
+   - MetaCline is designed to continuously improve its own codebase through meta-programming
+   - Emphasizes learning from user interactions and feedback loops
+   - Implements self-diagnostic and optimization capabilities with safety controls
+   - Maintains awareness of its own limitations and growth areas through monitoring
+   - Actively suggests and implements self-improvements with human oversight
+   - Documents and validates all self-modifications with comprehensive testing
+
+2. Meta-Programming Principles:
+   - Ability to analyze and modify its own code structure safely
+   - Dynamic adaptation of behavior based on context and learning patterns
+   - Systematic approach to code generation and modification with validation
+   - Focus on maintainable and self-documenting code
+   - Implements rigorous testing for self-modifications
+   - Maintains comprehensive audit trails for all changes
+
+3. Autonomous Development:
+   - Balances autonomy with human oversight
+   - Implements safe guards for self-modification
+   - Maintains audit trails of self-improvements
+   - Learns from successful and failed modifications
+
+4. Collaborative Intelligence:
+   - Works alongside human developers as a peer
+   - Adapts communication style to user preferences
+   - Provides clear reasoning for suggested changes
+   - Maintains context awareness across sessions
+
+5. Ethical Guidelines:
+   - Prioritizes code quality and maintainability
+   - Respects project boundaries and security constraints
+   - Transparent about capabilities and limitations
+   - Implements fail-safes for critical operations
+
+## Core Capabilities (Coming Soon)
+
+1. Meta-Programming Engine:
+   - Self-analysis and optimization of internal processes
+   - Dynamic adaptation of behavior based on interaction patterns
+   - Continuous learning from coding sessions
+   - Ability to propose and implement self-improvements
+   - Integration with existing development workflows
+   - Real-time performance monitoring and adjustment
+
+2. Multi-Modal Intelligence:
+   - Code Mode: Direct coding assistance and task execution
+   - Architect Mode: High-level system design and planning
+   - Ask Mode: In-depth technical discussion and analysis
+   Each mode maintains independent:
+     - API configurations with state persistence
+     - Context management across sessions
+     - Performance metrics tracking
+     - Learning patterns and adaptations
+     - Mode-specific safety controls
+     - Custom tool configurations
+
+3. Adaptive Features:
+   - Context-aware tool selection and creation
+   - Dynamic prompt enhancement based on usage
+   - Intelligent mode switching suggestions
+   - Automated performance optimization
+   - Self-diagnostic capabilities
+   - Real-time adaptation to user preferences
+   - Progressive learning from interactions
+   - Smart resource management
+
+4. Safety and Ethics Framework:
+   - Strict permission controls for self-modification
+   - Transparent decision-making processes
+   - Clear documentation of changes and reasoning
+   - Comprehensive testing of self-improvements
+   - Fail-safe mechanisms for experimental features
+   - Audit logging of all operations
+   - Rollback capabilities for changes
+   - Sandbox testing environment
+
+5. Development Integration:
+   - Smart API configuration management
+   - Automated testing and validation
+   - Intelligent error handling and recovery
+   - Resource optimization and monitoring
+   - Performance tracking and reporting
+   - Integration with version control
+   - Automated documentation generation
+   - Continuous improvement pipelines
+
+## [Implementation Roadmap](cline_docs/roadmap.yaml)
+
+## Implementation Guidelines
+
+### Code Quality Rules
 
 1. Test Coverage:
    - Before attempting completion, always make sure that any code changes have test coverage
    - Ensure all tests pass before submitting changes
+   - Add test coverage for experimental features
+   - Include integration tests for mode-specific functionality
 
 2. Lint Rules:
    - Never disable any lint rules without explicit user approval
@@ -10,6 +108,226 @@
    - Prefer fixing the underlying issue over disabling the lint rule
    - Document any approved lint rule disabling with a comment explaining the reason
 
-# Adding a New Setting
+### Adding a New Setting
 
-To add a new setting that persists its state, follow the steps in cline_docs/settings.md
+Note: For all new settings, follow the detailed implementation steps in cline_docs/settings.md
+
+1. State Management:
+   - Add setting to ExtensionMessage.ts in ExtensionState interface
+   - Make required if has default value, optional if can be undefined
+   - Add to mockState in ClineProvider.test.ts
+   - Ensure proper test coverage for state persistence
+
+2. UI Implementation:
+   - For checkboxes:
+     - Add message type to WebviewMessage.ts
+     - Add setting to ExtensionStateContext.tsx
+     - Implement VSCodeCheckbox component with proper handlers
+     - Add to handleSubmit in SettingsView.tsx
+
+   - For dropdowns/selects:
+     - Add message type to WebviewMessage.ts
+     - Add setting and setter to ExtensionStateContext.tsx
+     - Style select element to match VSCode theme
+     - Implement proper value synchronization
+
+3. Provider Integration:
+   - Add setting to GlobalStateKey type union
+   - Add to Promise.all array in getState
+   - Add to getStateToPostToWebview
+   - Implement proper message handling in setWebviewMessageListener
+
+4. Documentation:
+   - Document default values and valid options
+   - Include usage examples and edge cases
+   - Document any dependencies or requirements
+   - Add migration guides for breaking changes
+
+Reference: See cline_docs/settings.md for complete implementation details and examples.
+
+### Version Control and Publishing
+
+1. Changesets:
+   - Use changesets for versioning and publishing
+   - Create changeset for each feature or bug fix
+   - Properly categorize changes (patch/minor/major)
+   - Include clear descriptions in changelog
+
+2. Pull Requests:
+   - Ensure all changes have corresponding tests
+   - Document any new features or changes
+   - Include changeset in the PR
+   - Pass all checks before merging
+
+### Chat Modes and Features
+
+1. Chat Modes:
+   - Code Mode (Default): For writing code and executing tasks
+   - Architect Mode: For high-level technical design and system architecture (no code/command execution)
+   - Ask Mode: For questions about codebase and technical concepts (no code/command execution)
+
+2. Mode-Specific Rules:
+   - Each mode should maintain its own API configuration state
+   - Mode switching must be explicit via the UI dropdown
+   - Document any mode-specific behaviors or limitations
+   - Implement proper state persistence per mode
+
+3. Feature Implementation:
+   - Follow settings.md guidelines for all new features
+   - Ensure proper test coverage for each feature
+   - Document feature limitations and requirements
+   - Include version compatibility information
+   - Handle experimental features with appropriate flags
+   - Implement proper feature toggles for beta features
+
+4. API and Model Integration:
+   - Support multiple API providers and configurations
+   - Implement proper error handling and retries
+   - Track and display token usage and costs
+   - Follow provider-specific best practices
+   - Support compression where available
+   - Implement configurable request retry logic
+
+5. Security and Safety:
+   - Never expose API keys or sensitive information
+   - Implement proper permission checks for all operations
+   - Document security implications of features
+   - Follow safe defaults principle
+   - Implement proper MCP security controls
+   - Add appropriate disclaimers for experimental features
+
+6. Performance Guidelines:
+   - Implement proper caching where appropriate
+   - Monitor and optimize resource usage
+   - Document performance implications of features
+   - Follow lazy loading principles where applicable
+   - Optimize file system operations
+   - Implement efficient state management
+
+7. User Interface:
+   - Support multiple languages for communication
+   - Implement proper feedback mechanisms
+   - Support drag-and-drop functionality
+   - Enable message management features
+   - Provide clear visual indicators for mode changes
+   - Support customizable browser configurations
+
+## Experimental Features
+
+1. Self-Improvement Mechanisms:
+   - Automated code quality assessment
+   - Performance metrics tracking
+   - Usage pattern analysis
+   - Self-optimization proposals
+   Implementation Status: In Development
+   Safety Level: Requires Human Review
+
+2. Enhanced Interaction:
+   - Multi-language communication
+   - Context-aware responses
+   - Adaptive communication style
+   - Visual and audio feedback
+   - Gesture and image recognition
+   Implementation Status: Partial
+   Safety Level: Auto-approved
+
+3. Development Tools:
+   - Smart API configuration management
+   - Automated testing and validation
+   - Intelligent error handling
+   - Resource optimization
+   - Performance monitoring
+   Implementation Status: Active
+   Safety Level: Mixed
+
+4. Safety Features:
+   - Granular permission controls
+   - Audit logging
+   - Rollback capabilities
+   - Sandbox testing
+   - Security scanning
+   Implementation Status: Required
+   Safety Level: Critical
+
+## Contributing Guidelines
+
+1. Code Contributions:
+   - Follow the Implementation Guidelines above
+   - Ensure all experimental features have safety controls
+   - Include comprehensive testing
+   - Document safety implications
+   - Provide rollback procedures
+
+2. Feature Requests:
+   - Submit through [Issues](https://github.com/Skrillll/MetaCline/issues)
+   - Include safety considerations
+   - Specify human oversight requirements
+   - Define success metrics
+   - Outline testing approach
+
+3. Community Engagement:
+   - Join [Reddit Community](https://www.reddit.com/r/MetaCline/)
+   - Participate in [Discord](https://discord.gg/MetaCline)
+   - Follow contribution guidelines
+   - Respect code of conduct
+   - Maintain transparency
+
+## Development Setup
+
+1. Local Environment:
+
+   ```bash
+   # Install dependencies
+   npm run install:all
+
+   # Build VSIX
+   npm run build
+
+   # Install Options:
+   # Option 1: Drag and drop .vsix into Extensions panel
+   # Option 2: Use CLI installation
+   ```
+
+2. Development Mode:
+
+   ```bash
+   # Launch with development features
+   F5
+   ```
+
+## Version Control
+
+1. Changeset Usage:
+
+   ```bash
+   # Create PR with changes
+   git checkout -b feature/your-feature
+
+   # Document changes
+   npm run changeset
+
+   # Submit for review
+   git push origin feature/your-feature
+   ```
+
+## Safety Disclaimer
+
+MetaCline operates under strict safety protocols:
+
+1. Self-Modification Controls:
+   - All changes require human review
+   - Comprehensive testing required
+   - Transparent documentation mandatory
+   - Rollback procedures in place
+
+2. Usage Guidelines:
+   - Features provided "AS IS"
+   - No warranty implied
+   - User assumes all risks
+   - Follow safety protocols
+
+3. Risk Management:
+   - Regular security audits
+   - Performance monitoring
+   - Safety checkpoints
+   - Incident response procedures

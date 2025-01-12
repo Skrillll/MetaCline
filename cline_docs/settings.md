@@ -1,3 +1,4 @@
+# Adding a New Setting
 
 ## For All Settings
 
@@ -23,6 +24,7 @@
    - Add the setting to the initial state in useState
    - Add the setting to the contextValue object
    - Example:
+
      ```typescript
      interface ExtensionStateContextType {
        multisearchDiffEnabled: boolean;
@@ -38,6 +40,7 @@
    - Add the setting to the return value in getStateToPostToWebview
    - Add a case in setWebviewMessageListener to handle the setting's message type
    - Example:
+
      ```typescript
      case "multisearchDiffEnabled":
        await this.updateGlobalState("multisearchDiffEnabled", message.bool)
@@ -50,6 +53,7 @@
    - Add the VSCodeCheckbox component with the setting's state and onChange handler
    - Add appropriate labels and description text
    - Example:
+
      ```typescript
      <VSCodeCheckbox 
        checked={multisearchDiffEnabled} 
@@ -62,6 +66,7 @@
 5. Add the setting to handleSubmit in SettingsView.tsx:
    - Add a vscode.postMessage call to send the setting's value when clicking Done
    - Example:
+
      ```typescript
      vscode.postMessage({ type: "multisearchDiffEnabled", bool: multisearchDiffEnabled })
      ```
@@ -78,6 +83,7 @@
    - Add the setting to the initial state in useState with a default value
    - Add the setting to the contextValue object
    - Example:
+
      ```typescript
      interface ExtensionStateContextType {
        preferredLanguage: string;
@@ -93,6 +99,7 @@
    - Add the setting to the return value in getStateToPostToWebview
    - Add a case in setWebviewMessageListener to handle the setting's message type
    - Example:
+
      ```typescript
      case "preferredLanguage":
        await this.updateGlobalState("preferredLanguage", message.text)
@@ -106,6 +113,7 @@
    - Add options for the dropdown
    - Add appropriate labels and description text
    - Example:
+
      ```typescript
      <select
        value={preferredLanguage}
@@ -127,11 +135,13 @@
 5. Add the setting to handleSubmit in SettingsView.tsx:
    - Add a vscode.postMessage call to send the setting's value when clicking Done
    - Example:
+
      ```typescript
      vscode.postMessage({ type: "preferredLanguage", text: preferredLanguage })
      ```
 
 These steps ensure that:
+
 - The setting's state is properly typed throughout the application
 - The setting persists between sessions
 - The setting's value is properly synchronized between the webview and extension

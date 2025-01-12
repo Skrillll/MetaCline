@@ -9,12 +9,12 @@ import delay from "delay"
 
 // Add custom interface for OpenRouter params
 type OpenRouterChatCompletionParams = OpenAI.Chat.ChatCompletionCreateParams & {
-    transforms?: string[];
+	transforms?: string[];
 }
 
 // Add custom interface for OpenRouter usage chunk
 interface OpenRouterApiStreamUsageChunk extends ApiStreamUsageChunk {
-    fullResponseText: string;
+	fullResponseText: string;
 }
 
 import { SingleCompletionHandler } from ".."
